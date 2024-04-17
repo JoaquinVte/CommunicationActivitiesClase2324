@@ -43,7 +43,14 @@ public class MainActivity extends AppCompatActivity {
         ActivityResultLauncher<Intent> resultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result ->{
-
+                    if(result.getResultCode()==RESULT_OK){
+                        Intent intent = result.getData();
+                        customGradeView.setGrade(intent.getExtras().getInt("grade"));
+                        textSize = intent.getExtras().getInt("textSize");
+                        customGradeView.setTextSize(textSize);
+                        customGradeView.setBarColor((Color)intent.getExtras().get("barColor"));
+                        customGradeView.setTextColor((Color)intent.getExtras().get("textColor"));
+                    }
                 }
         );
 

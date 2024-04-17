@@ -1,6 +1,6 @@
 package es.ieslavereda.communicationactivitiesclase2324;
 
-public enum Color {
+public enum Color implements Listable {
     BLACK(R.color.black,"Black"),
     WHITE(R.color.white,"White"),
     BLUE(R.color.blue,"Blue"),
@@ -24,5 +24,20 @@ public enum Color {
 
     public String getNombre() {
         return nombre;
+    }
+
+    @Override
+    public String getDescription() {
+        return getNombre();
+    }
+
+    @Override
+    public int getDrawableSimbol() {
+        return getValue();
+    }
+
+    @Override
+    public int getDrawableImage() {
+        return getValue();
     }
 }
