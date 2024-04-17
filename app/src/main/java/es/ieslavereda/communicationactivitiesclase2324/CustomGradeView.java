@@ -18,6 +18,9 @@ public class CustomGradeView extends ConstraintLayout {
 
     private ProgressBar progressBar;
     private TextView textView;
+    private Color barColor;
+    private Color textColor;
+    private float textSize;
 
     public CustomGradeView(@NonNull Context context) {
         super(context);
@@ -53,6 +56,9 @@ public class CustomGradeView extends ConstraintLayout {
     }
 
     public void init(){
+        textColor = Color.DEFAULT;
+        barColor = Color.DEFAULT;
+
         View view = LayoutInflater.from(getContext())
                 .inflate(R.layout.my_grade_view,this,true);
 
@@ -73,7 +79,7 @@ public class CustomGradeView extends ConstraintLayout {
                     .getColor(R.styleable.CustomGradeView_barColor, getContext().getTheme().getResources().getColor(com.google.android.material.R.color.design_default_color_primary,getContext().getTheme()));
             int textColor = styledAttributes
                     .getColor(R.styleable.CustomGradeView_textColor, getContext().getTheme().getResources().getColor(com.google.android.material.R.color.design_default_color_primary,getContext().getTheme()));
-            float textSize = styledAttributes
+            textSize = styledAttributes
                     .getDimensionPixelSize(R.styleable.CustomGradeView_textSize, 0);
 
             styledAttributes.recycle();
@@ -111,8 +117,18 @@ public class CustomGradeView extends ConstraintLayout {
         progressBar.getProgressDrawable().setColorFilter(getContext().getColor(color), PorterDuff.Mode.SRC_IN);
     }
 
+    public void setBarColor(Color color){
+        this.barColor=color;
+        setBarColor(color.getValue());
+    }
+
     public void setTextColor(int color){
         textView.setTextColor(getContext().getColor(color));
+    }
+
+    public void setTextColor(Color color){
+        this.textColor = color;
+        setTextColor(color.getValue());
     }
 
     public void setTextSize(int size){
@@ -120,4 +136,19 @@ public class CustomGradeView extends ConstraintLayout {
     }
 
 
+    public int getGrade() {
+        return progressBar.getProgress();
+    }
+
+    public Color getBarColor() {
+        return barColor;
+    }
+
+    public Color getTextColor() {
+        return textColor;
+    }
+
+    public float getTextSize() {
+        return textSize;
+    }
 }

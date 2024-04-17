@@ -18,5 +18,11 @@ public enum Color {
         this.nombre = nombre;
     }
 
+    public int getValue() {
+        return value;
+    }
 
+    public String getNombre() {
+        return nombre;
+    }
 }
